@@ -12,12 +12,20 @@ import static java.util.Comparator.comparing;
 
 public class LongestName {
 
+    private static Comparator<Artist> byNameLength = comparing(artist -> artist.getName().length());
+
     public static Artist byReduce(List<Artist> artists) {
-        return Exercises.replaceThisWithSolution();
+        return artists.stream()
+                .reduce((acc, artist) -> {
+                    return (byNameLength.compare(acc, artist) >= 0) ? acc : artist;
+                })
+                .orElseThrow(RuntimeException::new);
     }
 
     public static Artist byCollecting(List<Artist> artists) {
-        return Exercises.replaceThisWithSolution();
+        return artists.stream()
+                .collect(Collectors.maxBy(byNameLength))
+                .orElseThrow(RuntimeException::new);
     }
 
 }

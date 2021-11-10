@@ -15,11 +15,14 @@ public class CallbackArtistAnalyser implements ArtistAnalyzer {
     }
 
     public void isLargerGroup(String artistName, String otherArtistName, Consumer<Boolean> handler) {
-        Exercises.replaceThisWithSolution();
+        boolean isLarger = getNumberOfMembers(artistName) > getNumberOfMembers(otherArtistName);
+        handler.accept(isLarger);
     }
 
     private long getNumberOfMembers(String artistName) {
-        return Exercises.replaceThisWithSolution();
+        return artistLookupService.apply(artistName)
+                .getMembers()
+                .count();
     }
 
 }

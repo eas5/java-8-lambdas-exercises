@@ -43,7 +43,7 @@ public class LambdaExercises {
     public void _2b() {
         ThreadLocal<DateFormat> threadSafeFormatter = ThreadLocal.withInitial(() -> DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.UK));
         DateFormat formatter = threadSafeFormatter.get();
-        assertEquals("01-Jan-1970", formatter.format(new Date(0)));
+        assertEquals("31 Dec 1969", formatter.format(new Date(0)));
     }
 
     @Test
